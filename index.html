@@ -1,12 +1,12 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Unfold &mdash; A onepage portfolio HTML template by Colorlib</title>
+    <title>Shadil's portfolio</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <meta name="description" content="">
-    <meta name="keywords" content="html, css, javascript, jquery">
+    <meta name="keywords" content="html, css, javascript, jquery,portfolio">
     <meta name="author" content="">
 
     <link rel="stylesheet" href="css/vendor/icomoon/style.css">
@@ -379,14 +379,17 @@
                   <div class="col-lg-6 form-group gsap-reveal">
                     <label for="name">Name</label>
                     <input name="name" type="text" class="form-control" id="name"  >
+                    <span id="nameerr"></span>
                   </div>
                   <div class="col-lg-6 form-group gsap-reveal">
                     <label for="email">Email</label>
                     <input name="email" type="email" class="form-control" id="email" >
+                    <span id="mailerr"></span>
                   </div>
                   <div class="col-lg-12 form-group gsap-reveal">
                     <label for="message">Write your message...</label>
                     <textarea name="message" id="message" cols="30" rows="7" class="form-control"></textarea>
+                    <span id="messageerr"></span>
                   </div>
                 </div>
                 <div class="form-group row gsap-reveal">
@@ -471,6 +474,43 @@
     <script src="js/main.js"></script>
     
 <script>
+  
+    
+    const form=document.getElementById('contactform')
+    form.addEventListener('submit',function(e)
+    {
+      e.preventDefault()
+      const name=document.getElementById('name').value;
+      const mail=document.getElementById('email').value;
+      const message=document.getElementById('message').value;
+      const check="@";
+      if(name==="")
+      {
+       document.getElementById('nameerr').textContent="name is required"
+      }
+      else{
+        document.getElementById('nameerr').textContent=""
+      }
+     if(mail===""){
+      document.getElementById('mailerr').textContent="mail is required"
+     }
+     else if(!mail.includes(check)){
+      document.getElementById('mailerr').textContent="mail is must contain @"
+     }
+     else{
+      document.getElementById('mailerr').textContent=""
+     }
+     if(message===""){
+      document.getElementById('messageerr').textContent="message is required"
+     }
+     else{
+      document.getElementById('messageerr').textContent=""
+     }
+
+    }
+    
+    );
+    
         $("#contactform").submit((e)=>{
             e.preventDefault()
             $.ajax({
@@ -488,25 +528,7 @@
                 }
             })
         })
-    </script>
-    <script>
-    var form=document.getElementById('contactform')
-    form.addEventListener('submit',function(e)
-    {
-      e.preventDefault()
-      var name=document.getElementById('name').value;
-      var mail=document.getElementById('email').value;
-      if(name=="")
-      {
-        alert("name is required")
-      }
-     if(mail==""){
-      alert("mail is required")
-     }
 
-    }
-    
-    );
     </script>
 
 
